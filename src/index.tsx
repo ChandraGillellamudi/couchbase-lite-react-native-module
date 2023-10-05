@@ -77,6 +77,15 @@ export function deleteDocument(
 ): void {
   CBLite.deleteDocument(dbname, docid, OnSuccessCallback, OnErrorCallback);
 }
+
+export function purgeDocument(
+  dbname: string,
+  docid: string,
+  OnSuccessCallback: Function,
+  OnErrorCallback: Function
+): void {
+  CBLite.purgeDocument(dbname, docid, OnSuccessCallback, OnErrorCallback);
+}
 export function getDocument(
   dbname: string,
   docid: string,
