@@ -217,6 +217,37 @@ public class CBLiteModule extends ReactContextBaseJavaModule {
     }
   }
 
+  @ReactMethod
+  public void purgeDocument(String dbname, String docid, Callback OnSuccessCallback, Callback OnErrorCallback) {
+    try {
+      DocumentArgs documentArgs = null;
+
+      if (docid == null || docid.isEmpty()) {
+        OnErrorCallback.invoke(responseStrings.MissingargsDCID);
+      } else if (dbname == null || dbname.isEmpty()) {
+        OnErrorCallback.invoke(responseStrings.MissingargsDBN);
+      } else {
+        documentArgs = new DocumentArgs(dbname, docid);
+
+        String documentResponse = dbMgr.purgeDocument(documentArgs);
+        if (!documentResponse.isEmpty()) {
+
+          if (documentResponse.equals(responseStrings.SuccessCode))
+            OnSuccessCallback.invoke(documentResponse);
+          else
+            OnErrorCallback.invoke(documentResponse);
+
+
+        } else {
+          OnErrorCallback.invoke(responseStrings.NullDoc);
+        }
+
+      }
+    } catch (Exception e) {
+      OnErrorCallback.invoke(responseStrings.Exception + e.getMessage());
+    }
+  }
+
   @ReactMethod(isBlockingSynchronousMethod = true)
   public String deleteDatabase(String dbname) {
     try {
