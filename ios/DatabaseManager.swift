@@ -105,6 +105,33 @@ class DatabaseManager {
             throw error
         }
     }
+
+    func purgeDocument(documentArgs: DocumentArgs) throws -> String{
+        if let dbname = documentArgs.databaseName, let docid = documentArgs.docid {
+            let args = DocumentArgs(dbname: dbname, docid: docid)
+            if let dId = args.docid {
+                if !dId.isEmpty{
+                    do {
+                        if let db = databases[dbname]?.database {
+                            try db.purgeDocument(withID: docid)
+                            return ResponseStrings.SuccessCode
+                        }
+                    } catch let error {
+                        throw error
+                    }
+                }
+                else {
+                    return ResponseStrings.MissingargsDCID
+                }
+            } else {
+                return ResponseStrings.MissingargsDCID
+            }
+        }
+        else{
+            return ("\(ResponseStrings.DBnotfound) OR \(ResponseStrings.invalidArgs)")
+        }
+        return ResponseStrings.ErrorCode
+    }
     
     func copyDatabase(cargs: DatabaseArgs, nargs: DatabaseArgs) throws -> String {
         do {
