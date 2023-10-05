@@ -16,6 +16,8 @@ RCT_EXTERN__BLOCKING_SYNCHRONOUS_METHOD(databaseExists:(NSString *)dbname config
 
 RCT_EXTERN_METHOD(deleteDocument:(NSString *)dbname docid:(NSString *)docid OnSuccessCallback:(RCTResponseSenderBlock)OnSuccessCallback OnErrorCallback:(RCTResponseSenderBlock)OnErrorCallback)
 
+RCT_EXTERN_METHOD(purgeDocument:(NSString *)dbname docid:(NSString *)docid OnSuccessCallback:(RCTResponseSenderBlock)OnSuccessCallback OnErrorCallback:(RCTResponseSenderBlock)OnErrorCallback)
+
 RCT_EXTERN_METHOD(getDocument:(NSString *)dbname docid:(NSString *)docid OnSuccessCallback:(RCTResponseSenderBlock)OnSuccessCallback OnErrorCallback:(RCTResponseSenderBlock)OnErrorCallback)
 
 RCT_EXTERN_METHOD(setDocument:(NSString *)dbname docid:(NSString *)docid data:(NSString *)data OnSuccessCallback:(RCTResponseSenderBlock)OnSuccessCallback OnErrorCallback:(RCTResponseSenderBlock)OnErrorCallback)
