@@ -5,6 +5,7 @@ export declare function deleteDatabase(dbname: string): Promise<string>;
 export declare function copyDatabase(currentdbname: string, newDBName: string, currentConfig: Object, newConfig: Object, OnSuccessCallback: Function, OnErrorCallback: Function): void;
 export declare function databaseExists(dbname: string, config: Object): Promise<string>;
 export declare function deleteDocument(dbname: string, docid: string, OnSuccessCallback: Function, OnErrorCallback: Function): void;
+export declare function purgeDocument(dbname: string, docid: string, OnSuccessCallback: Function, OnErrorCallback: Function): void;
 export declare function getDocument(dbname: string, docid: string, OnSuccessCallback: Function, OnErrorCallback: Function): void;
 export declare function setDocument(dbname: string, docid: string, data: string, OnSuccessCallback: Function, OnErrorCallback: Function): void;
 export declare function setBlob(dbname: string, type: string, docObject: string, key: string, config: Object): Promise<string>;
