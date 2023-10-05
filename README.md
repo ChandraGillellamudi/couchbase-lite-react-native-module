@@ -38,6 +38,7 @@ The following is a list of APIs (and features) exported by the react-native plug
 | setDocument (With JSON OBJECT) | MutableDocument |
 | getDocument | MutableDocument |
 | deleteDocument | MutableDocument |
+| purgeDocument | MutableDocument |
 | setBlob | Database |
 | getBlob  | Database |
 | createValueIndex  | Database |
