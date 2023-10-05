@@ -285,6 +285,39 @@ public class DatabaseManager {
 
     }
 
+    public String purgeDocument(DocumentArgs documentArgs) {
+
+        String response;
+        DocumentArgs args = null;
+
+        //Check args object
+
+        try {
+            args = new DocumentArgs(documentArgs.databaseName, documentArgs.docid);
+        } catch (JSONException exception) {
+            return response = responseStrings.invalidArgs;
+        }
+
+
+        // Check id
+        if (args.docid.isEmpty()) {
+            return response = responseStrings.MissingargsDCID;
+        }
+
+        try {
+            if (databases.get(documentArgs.databaseName) != null) {
+                Database db = databases.get(documentArgs.databaseName).getDatabase();
+                db.purge(args.docid);
+                return responseStrings.SuccessCode;
+            } else {
+                return responseStrings.DBnotfound;
+            }
+        } catch (CouchbaseLiteException ex) {
+            return responseStrings.Exception + ex;
+        }
+
+    }
+
     public String getDocument(DocumentArgs args) throws Exception {
 
         String response;
