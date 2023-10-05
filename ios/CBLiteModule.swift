@@ -77,6 +77,37 @@ class Cblite: NSObject {
     }
     
     @objc
+    func purgeDocument(_ dbname: String,
+                        docid: String,
+                       OnSuccessCallback:RCTResponseSenderBlock,
+                       OnErrorCallback: RCTResponseSenderBlock) {
+        do {
+            var documentArgs = DocumentArgs()
+            if dbname.isEmpty {
+                let error = ResponseStrings.MissingargsDBN;
+                OnErrorCallback([error])
+            } else if docid.isEmpty {
+                let error = ResponseStrings.MissingargsDCID;
+                OnErrorCallback([error])
+            } else {
+                documentArgs = DocumentArgs(dbname: dbname, docid: docid)
+                let response = try DatabaseManager.shared.purgeDocument(documentArgs: documentArgs)
+                if !response.isEmpty {
+                    if response == ResponseStrings.SuccessCode {
+                        OnSuccessCallback([response])
+                    } else {
+                        let error = response;
+                        OnErrorCallback([error])
+                    }
+                }
+            }
+        } catch let error {
+            let error = ResponseStrings.Exception + error.localizedDescription
+            OnErrorCallback([error])
+        }
+    }
+    
+    @objc
     func copyDatabase(_ currentdbname: String,
                       newDBName: String,
                       currentConfig: [String:Any],
