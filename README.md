@@ -17,7 +17,7 @@ React Native Modules allow mobile apps written in React Native to access native 
 
 ## Sample App
 
-A React Native app that demonstrates core database, CRUD, query and sync functions of Couchbase Lite using the plugin is available [here](). 
+A React Native app that demonstrates core database, CRUD, query and sync functions of Couchbase Lite using the plugin is available [here](https://github.com/couchbaselabs/userprofile-couchbase-mobile-reactnative/blob/main/README.md). 
 
 
 ## Exported APIs
